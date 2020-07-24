@@ -1,3 +1,7 @@
+let PC: Sprite = null
+let Fusion: Sprite = null
+let CURA: Sprite = null
+let curseur: Sprite = null
 function Etape1 () {
     scene.setBackgroundImage(img`
         4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
@@ -213,8 +217,25 @@ function Etape1 () {
         `, SpriteKind.Player)
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-	
+    if (curseur.overlapsWith(PC)) {
+        music.playTone(494, music.beat(BeatFraction.Sixteenth))
+        game.splash("Non c'est pas", "cura!")
+    }
+    if (curseur.overlapsWith(Fusion)) {
+        music.playTone(494, music.beat(BeatFraction.Sixteenth))
+        game.splash("Tu connais", "Fusion 360 ?")
+        game.splash("C'est super", "pour faire des objets")
+        game.splash("et les imprimer", "en 3D")
+        game.splash("mais là c'est déjà fait", "va sur Cura!")
+    }
+    if (curseur.overlapsWith(CURA)) {
+        music.playTone(988, music.beat(BeatFraction.Sixteenth))
+        music.playMelody("C5 C5 - G C5 - G B ", 300)
+    }
 })
+function Etape2 () {
+	
+}
 function Intro () {
     scene.setBackgroundImage(img`
         1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
@@ -347,14 +368,6 @@ function Intro () {
     game.splash("que l'imprimante", "comprenne")
     music.playMelody("C D E F G C G C ", 300)
 }
-let curseur: Sprite = null
-let CURA: Sprite = null
-let Fusion: Sprite = null
-let PC: Sprite = null
-Etape1()
 game.onUpdate(function () {
-    if (curseur.x > 14) {
-        controller.moveSprite(curseur, 50, 50)
-        console.log("OK")
-    }
+    controller.moveSprite(curseur, 50, 50)
 })
