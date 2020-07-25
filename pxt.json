@@ -1,5 +1,5 @@
 {
-    "name": "3DPrinterSim",
+    "name": "Apprend à utiliser une imprimante 3D",
     "description": "",
     "dependencies": {
         "device": "*",
